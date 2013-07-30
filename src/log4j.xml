@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!-- Property myzion.root is defined in the web.xml in the context param
+	"webAppRootKey" -->
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="myConsole" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] %-20c - %m%n" />
+		</layout>
+		<!--过滤器设置输出的级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="debug" />
+			<param name="levelMax" value="error" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+	<appender name="stdout" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/data/web_log/logs/wsmvc/stdout.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="50MB" />
+		<param name="MaxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] %-20c - %m%n" />
+		</layout>
+	</appender>
+	<appender name="stderr" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/data/web_log/logs/wsmvc/stderr.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="50MB" />
+		<param name="MaxBackupIndex" value="3" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] %-20c - %m%n" />
+		</layout>
+	</appender>
+	<appender name="accesslog" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/data/web_log/logs/wsmvc/access.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="50MB" />
+		<param name="MaxBackupIndex" value="3" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] %-20c - %m%n" />
+		</layout>
+	</appender>
+	<appender name="lucenelog" class="org.apache.log4j.RollingFileAppender">
+		<!-- <param name="File" value="/data/web_log/logs/wsmvc/lucene.log" /> -->
+		<param name="File" value="/data/web_log/logs/wsmvc/lucene.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="50MB" />
+		<param name="MaxBackupIndex" value="3" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] %-20c - %m%n" />
+		</layout>
+	</appender>
+	<appender name="drmlog" class="org.apache.log4j.RollingFileAppender">
+		<!-- <param name="File" value="/data/web_log/logs/wsmvc/lucene.log" /> -->
+		<param name="File" value="/data/web_log/logs/wsmvc/drm.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="50MB" />
+		<param name="MaxBackupIndex" value="3" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] %-20c - %m%n" />
+		</layout>
+	</appender>
+	<appender name="filelog" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/data/web_log/logs/wsmvc/file.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="50MB" />
+		<param name="MaxBackupIndex" value="3" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] %-20c - %m%n" />
+		</layout>
+	</appender>
+	<logger name="com.mvc" additivity="false">
+		<level value="error" />
+		<appender-ref ref="stderr" />
+		<appender-ref ref="myConsole" />
+	</logger>
+	<logger name="org.springframework" additivity="false">
+		<level value="error" />
+		<appender-ref ref="stderr" />
+		<appender-ref ref="myConsole" />
+	</logger>
+	<logger name="accessLogger" additivity="false">
+		<level value="info" />
+		<appender-ref ref="accesslog" />
+		<appender-ref ref="myConsole" />
+	</logger>
+	<logger name="drmLogger" additivity="false">
+		<level value="info" />
+		<appender-ref ref="drmlog" />
+		<appender-ref ref="myConsole" />
+	</logger>
+	<logger name="luceneLogger" additivity="false">
+		<level value="info" />
+		<appender-ref ref="lucenelog" />
+		<appender-ref ref="myConsole" />
+	</logger>
+	<logger name="fileLogger" additivity="false">
+		<level value="info" />
+		<appender-ref ref="filelog" />
+		<appender-ref ref="myConsole" />
+	</logger>
+	<root>
+		<priority value="error" />
+		<appender-ref ref="myConsole" />
+	</root>
+</log4j:configuration>
