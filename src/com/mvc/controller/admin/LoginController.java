@@ -12,6 +12,7 @@ import com.mvc.basemvc.annotation.WithoutAuthorize;
 public class LoginController{
 	
 	/*@Autowired
+	 * 
 	private IAdminUserService userService;
 	
 	@Autowired
