@@ -23,6 +23,11 @@ public class LoginController{
 		return "admin/login";
 	}
 	
+	@RequestMapping(value = "/test")
+	public String test(){
+		return "admin/test/test1";
+	}
+	
 	/*@RequestMapping(value = "/logincheck")
 	public @ResponseBody JSONObject loginCheck(HttpServletRequest request,
 			HttpServletResponse response,AdminUser user) throws Exception{
