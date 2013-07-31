@@ -1,7 +1,10 @@
 package com.mvc.dao.impl;
 
+import org.springframework.stereotype.Repository;
+
 import com.mvc.dao.ICmsUserDao;
 
+@Repository
 public class CmsUserDaoImpl implements ICmsUserDao {
 
 	/**
